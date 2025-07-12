@@ -172,13 +172,14 @@ if st.session_state.step == "start":
     st.markdown("</div>", unsafe_allow_html=True)
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
+    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+
     st.markdown("""
     <div class="cookie-monster">
         <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.markdown("<h1>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
     tipo = st.radio("", [
         "Solo chocolate",
@@ -192,11 +193,13 @@ elif st.session_state.step == "tipo_chocolate":
             st.session_state.step = "hecho_mayoria"
         else:
             st.session_state.step = "acentos"
+
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
     st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['barra de chocolate'] == True]
+
     st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.markdown("<h1>¿Con maní o almendras?</h1>", unsafe_allow_html=True)
     eleccion = st.radio("", [
@@ -210,13 +213,16 @@ elif st.session_state.step == "mani_almendras":
         st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == True]
     elif eleccion == "Sin Almendras":
         st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == False]
+
     if st.button("Siguiente ➡️"):
         st.session_state.step = "tipo_final"
+
     st.markdown("</div>", unsafe_allow_html=True)
 
 # ===================== PASO 4: Tipo final =====================
 elif st.session_state.step == "tipo_final":
     st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+
     st.markdown("<h1>¿Qué tipo de chocolate prefieres?</h1>", unsafe_allow_html=True)
     tipo_choco = st.radio("", ["Con leche", "Blanco", "Puro"])
     col_map = {
@@ -233,6 +239,33 @@ elif st.session_state.step == "tipo_final":
     else:
         st.warning("No encontramos chocolates con esas preferencias 😢")
     st.button("🔁 Reiniciar", on_click=reset_chat)
+
+    # GALERÍA DENTRO DEL CUADRO
+    st.markdown("<div class='gallery'>", unsafe_allow_html=True)
+
+    def galeria(url, caption):
+        st.markdown(f"""
+        <div>
+            <img src="{url}" alt="{caption}">
+            <div class="gallery-caption">{caption}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+    galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/chocolatito.png", "Chocolate 🍫")
+    galeria("https://github.com/grechiiii/de-mi-mena-/blob/main/image/brownie.png?raw=true", "Brownie 🟤")
+    galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/torta.png", "Quequito 🎂")
+    galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/galletita.png", "Galletita 🍪")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="cookie-monster">
+        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20comiendo.png" width="140">
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<p style='text-align: center;'>¡Gracias por usar nuestro recomendador! 💘</p>", unsafe_allow_html=True)
+
     st.markdown("</div>", unsafe_allow_html=True)
 
     # ========== GALERÍA FINAL ==========
