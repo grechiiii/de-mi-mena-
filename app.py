@@ -46,7 +46,7 @@ st.markdown(
 )
 
 # ===================== CARGA DE DATOS =====================
-chocoframe = pd.read_excel("chocodata.xlsx")
+chocoframe = pd.read_excel("chocodataa.xlsx")
 
 # Conversión de columnas
 conv_booleanos = chocoframe.columns[1:19]
