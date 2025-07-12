@@ -14,14 +14,15 @@ st.markdown("""
 
         [data-testid="stSidebar"] {
             background-color: #d7b49e;
+            border-right: 3px solid #6d4c41;
         }
 
         .glass-box {
-            background-color: rgba(255, 255, 255, 0.92);
-            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.88);
+            padding: 50px 40px;
             border-radius: 25px;
-            margin: 50px auto;
-            max-width: 700px;
+            margin: 60px auto;
+            max-width: 720px;
             box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
             text-align: center;
         }
@@ -36,16 +37,25 @@ st.markdown("""
         .pregunta {
             font-size: 22px;
             color: #5d4037;
-            margin: 20px 0;
+            margin: 25px 0;
         }
 
         .stButton>button {
-            background-color: #8d6e63;
+            background-color: #6d4c41;
             color: white;
             font-size: 20px;
+            font-weight: bold;
             border-radius: 12px;
-            padding: 10px 25px;
-            margin: 10px 0;
+            padding: 12px 30px;
+            margin: 15px;
+            border: none;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stButton>button:hover {
+            background-color: #8d6e63;
+            transform: scale(1.05);
         }
 
         .gallery {
@@ -70,6 +80,12 @@ st.markdown("""
             text-align: center;
             font-size: 14px;
             color: #4e342e;
+        }
+
+        .cookie-monster {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -106,7 +122,12 @@ def reset_chat():
 
 # ===================== INICIO =====================
 if st.session_state.step == "start":
-    st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png", width=140)
+    st.markdown("""
+    <div class="cookie-monster">
+        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png" width="140">
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.markdown("<h1>Vamos a comer un chocolate</h1>", unsafe_allow_html=True)
     st.markdown("<p class='pregunta'>¿Te provoca algo dulce?</p>", unsafe_allow_html=True)
@@ -121,7 +142,12 @@ if st.session_state.step == "start":
 
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
-    st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png", width=140)
+    st.markdown("""
+    <div class="cookie-monster">
+        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.markdown("<h1>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
     tipo = st.radio("", [
@@ -196,5 +222,11 @@ elif st.session_state.step == "tipo_final":
     galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/galletita.png", "Galletita 🍪")
 
     st.markdown("</div>", unsafe_allow_html=True)
-    st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20comiendo.png", width=140)
+
+    st.markdown("""
+    <div class="cookie-monster">
+        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20comiendo.png" width="140">
+    </div>
+    """, unsafe_allow_html=True)
+
     st.markdown("<p style='text-align: center;'>¡Gracias por usar nuestro recomendador! 💘</p>", unsafe_allow_html=True)
