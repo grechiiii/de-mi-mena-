@@ -55,7 +55,6 @@ st.markdown("""
             transition: all 0.3s ease;
         }
 
-
         .stButton>button:hover {
             background-color: #8d6e63;
             transform: scale(1.05);
@@ -146,97 +145,102 @@ def reset_chat():
     st.session_state.step = "start"
     st.session_state.current_filtered_frame = chocoframe.copy()
 
-# ===================== INICIO =====================
-if st.session_state.step == "start":
-    st.markdown("""
-    <div class='glass-box'>
+# ===================== FLUJO PRINCIPAL =====================
+step = st.session_state.step
+
+# Función para mostrar la sección completa dentro de una caja blanca
+def glass_box_section(content_function):
+    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+    content_function()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+if step == "start":
+    def content():
+        st.markdown("""
         <div class="cookie-monster">
             <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png">
         </div>
         <h1>Vamos a comer un chocolate</h1>
         <p class='pregunta'>¿Te provoca algo dulce?</p>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
 
-    # CENTRAMOS BOTONES USANDO COLUMNAS
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        col_si, col_no = st.columns(2)
-        with col_si:
-            if st.button("Sí"):
-                st.session_state.step = "tipo_chocolate"
-        with col_no:
-            if st.button("No"):
-                st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            col_si, col_no = st.columns(2)
+            with col_si:
+                if st.button("Sí"):
+                    st.session_state.step = "tipo_chocolate"
+            with col_no:
+                if st.button("No"):
+                    st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
 
-    st.markdown("</div>", unsafe_allow_html=True)
-# ===================== PASO 2: Tipo de chocolate =====================
-elif st.session_state.step == "tipo_chocolate":
-    st.markdown("""
-    <div class="cookie-monster">
-        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
-    </div>
-    """, unsafe_allow_html=True)
+    glass_box_section(content)
 
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
-    st.markdown("<h1>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
-    tipo = st.radio("", [
-        "Solo chocolate",
-        "Hecho en su mayoría de chocolate",
-        "Con acentos de chocolate"
-    ])
-    if st.button("Siguiente ➡️"):
-        if tipo == "Solo chocolate":
-            st.session_state.step = "mani_almendras"
-        elif tipo == "Hecho en su mayoría de chocolate":
-            st.session_state.step = "hecho_mayoria"
-        else:
-            st.session_state.step = "acentos"
-    st.markdown("</div>", unsafe_allow_html=True)
+elif step == "tipo_chocolate":
+    def content():
+        st.markdown("""
+        <div class="cookie-monster">
+            <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
+        </div>
+        <h1>¿Qué tipo de chocolate quieres?</h1>
+        """, unsafe_allow_html=True)
 
-# ===================== PASO 3: Maní / Almendras =====================
-elif st.session_state.step == "mani_almendras":
+        tipo = st.radio("", [
+            "Solo chocolate",
+            "Hecho en su mayoría de chocolate",
+            "Con acentos de chocolate"
+        ])
+        if st.button("Siguiente ➡️"):
+            if tipo == "Solo chocolate":
+                st.session_state.step = "mani_almendras"
+            elif tipo == "Hecho en su mayoría de chocolate":
+                st.session_state.step = "hecho_mayoria"
+            else:
+                st.session_state.step = "acentos"
+
+    glass_box_section(content)
+
+elif step == "mani_almendras":
     st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['barra de chocolate'] == True]
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
-    st.markdown("<h1>¿Con maní o almendras?</h1>", unsafe_allow_html=True)
-    eleccion = st.radio("", [
-        "Con maní", "Sin maní", "Con Almendras", "Sin Almendras"
-    ])
-    if eleccion == "Con maní":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == True]
-    elif eleccion == "Sin maní":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == False]
-    elif eleccion == "Con Almendras":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == True]
-    elif eleccion == "Sin Almendras":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == False]
-    if st.button("Siguiente ➡️"):
-        st.session_state.step = "tipo_final"
-    st.markdown("</div>", unsafe_allow_html=True)
+    def content():
+        st.markdown("<h1>¿Con maní o almendras?</h1>", unsafe_allow_html=True)
+        eleccion = st.radio("", ["Con maní", "Sin maní", "Con Almendras", "Sin Almendras"])
+        if eleccion == "Con maní":
+            st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == True]
+        elif eleccion == "Sin maní":
+            st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == False]
+        elif eleccion == "Con Almendras":
+            st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == True]
+        elif eleccion == "Sin Almendras":
+            st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == False]
+        if st.button("Siguiente ➡️"):
+            st.session_state.step = "tipo_final"
 
-# ===================== PASO 4: Tipo final =====================
-elif st.session_state.step == "tipo_final":
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
-    st.markdown("<h1>¿Qué tipo de chocolate prefieres?</h1>", unsafe_allow_html=True)
-    tipo_choco = st.radio("", ["Con leche", "Blanco", "Puro"])
-    col_map = {
-        "Con leche": "chocolate con leche",
-        "Blanco": "chocolate blanco",
-        "Puro": "chocolate puro"
-    }
-    col = col_map[tipo_choco]
-    st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe[col] == True]
+    glass_box_section(content)
 
-    if not st.session_state.current_filtered_frame.empty:
-        st.success("✨ ¡Estos chocolates son ideales para ti!")
-        st.dataframe(st.session_state.current_filtered_frame)
-    else:
-        st.warning("No encontramos chocolates con esas preferencias 😢")
-    st.button("🔁 Reiniciar", on_click=reset_chat)
-    st.markdown("</div>", unsafe_allow_html=True)
+elif step == "tipo_final":
+    def content():
+        st.markdown("<h1>¿Qué tipo de chocolate prefieres?</h1>", unsafe_allow_html=True)
+        tipo_choco = st.radio("", ["Con leche", "Blanco", "Puro"])
+        col_map = {
+            "Con leche": "chocolate con leche",
+            "Blanco": "chocolate blanco",
+            "Puro": "chocolate puro"
+        }
+        col = col_map[tipo_choco]
+        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe[col] == True]
 
-    # ========== GALERÍA FINAL ==========
+        if not st.session_state.current_filtered_frame.empty:
+            st.success("✨ ¡Estos chocolates son ideales para ti!")
+            st.dataframe(st.session_state.current_filtered_frame)
+        else:
+            st.warning("No encontramos chocolates con esas preferencias 😢")
+        st.button("🔁 Reiniciar", on_click=reset_chat)
+
+    glass_box_section(content)
+
+    # Galería (fuera del glass-box actual)
     st.markdown("<div class='gallery'>", unsafe_allow_html=True)
-
     def galeria(url, caption):
         st.markdown(f"""
         <div>
@@ -249,13 +253,11 @@ elif st.session_state.step == "tipo_final":
     galeria("https://github.com/grechiiii/de-mi-mena-/blob/main/image/brownie.png?raw=true", "Brownie 🟤")
     galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/torta.png", "Quequito 🎂")
     galeria("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/galletita.png", "Galletita 🍪")
-
     st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="cookie-monster">
         <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20comiendo.png" width="140">
     </div>
+    <p style='text-align: center;'>¡Gracias por usar nuestro recomendador! 💘</p>
     """, unsafe_allow_html=True)
-
-    st.markdown("<p style='text-align: center;'>¡Gracias por usar nuestro recomendador! 💘</p>", unsafe_allow_html=True)
