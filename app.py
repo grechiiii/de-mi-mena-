@@ -71,6 +71,25 @@ st.markdown("""
             width: 180px;
         }
 
+        .si-no-button {
+            background-color: #6d4c41;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 14px;
+            padding: 15px 40px;
+            margin: 10px 20px;
+            border: none;
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .si-no-button:hover {
+            background-color: #8d6e63;
+            transform: scale(1.05);
+        }
+
         .gallery {
             display: flex;
             justify-content: center;
@@ -137,17 +156,18 @@ if st.session_state.step == "start":
         <h1>Vamos a comer un chocolate</h1>
         <p class='pregunta'>¿Te provoca algo dulce?</p>
         <div style="display: flex; justify-content: center; gap: 40px;">
+            <form action="" method="post">
+                <button class="si-no-button" name="si_button" type="submit">Sí</button>
+                <button class="si-no-button" name="no_button" type="submit">No</button>
+            </form>
+        </div>
+    </div>
     """, unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Sí"):
-            st.session_state.step = "tipo_chocolate"
-    with col2:
-        if st.button("No"):
-            st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
-
-    st.markdown("</div></div>", unsafe_allow_html=True)
+    if "si_button" in st.experimental_get_query_params():
+        st.session_state.step = "tipo_chocolate"
+    elif "no_button" in st.experimental_get_query_params():
+        st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
     
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
