@@ -198,21 +198,22 @@ elif st.session_state.step == "tipo_chocolate":
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
-    st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['barra de chocolate'] == True]
+    st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[st.session_state.current_filtered_frame['barra de chocolate'] == True]
 
     st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+
     st.markdown("<h1>¿Con maní o almendras?</h1>", unsafe_allow_html=True)
     eleccion = st.radio("", [
         "Con maní", "Sin maní", "Con Almendras", "Sin Almendras"
     ])
     if eleccion == "Con maní":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == True]
+        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[st.session_state.current_filtered_frame['mani'] == True]
     elif eleccion == "Sin maní":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['mani'] == False]
+        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[st.session_state.current_filtered_frame['mani'] == False]
     elif eleccion == "Con Almendras":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == True]
+        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[st.session_state.current_filtered_frame['almendras'] == True]
     elif eleccion == "Sin Almendras":
-        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[chocoframe['almendras'] == False]
+        st.session_state.current_filtered_frame = st.session_state.current_filtered_frame.loc[st.session_state.current_filtered_frame['almendras'] == False]
 
     if st.button("Siguiente ➡️"):
         st.session_state.step = "tipo_final"
