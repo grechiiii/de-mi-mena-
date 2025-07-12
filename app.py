@@ -1,69 +1,77 @@
 import streamlit as st
 import pandas as pd
 
-# ===================== CSS SUPER CUIDADO =====================
+# ========== CSS con fondo imagen y estilo tierno ==========
 st.markdown("""
     <style>
         .stApp {
-            background-color: #fefdfb;
-            font-family: 'Trebuchet MS', sans-serif;
+            background-image: url('https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/Fondo%20para%20una%20parte.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Comic Sans MS', cursive;
         }
 
-        h1, h2, h3 {
-            color: #4e342e;
+        .content-box {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
             text-align: center;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #4e342e;
+            font-size: 42px;
         }
 
         .stButton>button {
-            background-color: #8d6e63;
+            background-color: #a97155;
             color: white;
-            font-weight: bold;
+            font-size: 20px;
+            padding: 10px 24px;
             border-radius: 12px;
-            padding: 10px 20px;
+            margin: 10px;
         }
 
-        .stRadio > div {
-            background-color: #fceee3;
-            padding: 12px;
-            border-radius: 12px;
-        }
-
-        .hover-image {
-            transition: transform .3s ease;
-            border-radius: 12px;
-        }
-
-        .hover-image:hover {
-            transform: scale(1.15);
-            cursor: pointer;
-        }
-
-        .floating-gallery {
+        .centered {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 30px 10px;
-            background-color: #f8f4f0;
-            border-top: 2px solid #d7ccc8;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .choco-img {
             margin-top: 30px;
-        }
-
-        .gallery-caption {
-            text-align: center;
-            font-size: 14px;
-            color: #5d4037;
-            margin-top: 5px;
-        }
-
-        .title-box {
-            background-color: #fff8f1;
-            padding: 20px;
-            border-radius: 20px;
-            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
     </style>
 """, unsafe_allow_html=True)
+
+# ========== INICIO DE LA APP ==========
+
+# Imagen del mounstrito mirando
+st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png", width=140)
+
+with st.container():
+    st.markdown("<div class='content-box'>", unsafe_allow_html=True)
+
+    st.markdown("<h1>Vamos a comer un chocolate</h1>", unsafe_allow_html=True)
+    st.write("¿Te provoca algo dulce?")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("Sí"):
+            st.session_state.step = "tipo_chocolate"
+    with col2:
+        if st.button("No"):
+            st.warning("¡Está bien! Te esperamos cuando tengas antojito 😌")
+
+    # Imagen de los tres chocolates (decorativa)
+    st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/chocolates%20tres%20tipos.png", width=500, caption="Elige tu tipo favorito 🍫", use_column_width=False)
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ===================== DATOS =====================
 chocoframe = pd.read_excel("chocodataa.xlsx")
