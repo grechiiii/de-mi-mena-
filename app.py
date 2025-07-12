@@ -155,19 +155,20 @@ if st.session_state.step == "start":
         </div>
         <h1>Vamos a comer un chocolate</h1>
         <p class='pregunta'>¿Te provoca algo dulce?</p>
-        <div style="display: flex; justify-content: center; gap: 40px;">
-            <form action="" method="post">
-                <button class="si-no-button" name="si_button" type="submit">Sí</button>
-                <button class="si-no-button" name="no_button" type="submit">No</button>
-            </form>
-        </div>
-    </div>
     """, unsafe_allow_html=True)
 
-    if "si_button" in st.query_params:
-        st.session_state.step = "tipo_chocolate"
-    elif "no_button" in st.query_params:
-        st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
+    # CENTRAMOS BOTONES USANDO COLUMNAS
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        col_si, col_no = st.columns(2)
+        with col_si:
+            if st.button("Sí"):
+                st.session_state.step = "tipo_chocolate"
+        with col_no:
+            if st.button("No"):
+                st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
+
+    st.markdown("</div>", unsafe_allow_html=True)
     
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
