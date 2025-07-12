@@ -169,7 +169,6 @@ if st.session_state.step == "start":
                 st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
 
     st.markdown("</div>", unsafe_allow_html=True)
-    
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
     st.markdown("""
