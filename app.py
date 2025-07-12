@@ -164,9 +164,9 @@ if st.session_state.step == "start":
     </div>
     """, unsafe_allow_html=True)
 
-    if "si_button" in st.experimental_get_query_params():
+    if "si_button" in st.query_params:
         st.session_state.step = "tipo_chocolate"
-    elif "no_button" in st.experimental_get_query_params():
+    elif "no_button" in st.query_params:
         st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
     
 # ===================== PASO 2: Tipo de chocolate =====================
