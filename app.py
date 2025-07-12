@@ -66,7 +66,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ===================== DATOS =====================
-chocoframe = pd.read_excel("chocodata.xlsx")
+chocoframe = pd.read_excel("chocodataa.xlsx")
 conv_booleanos = chocoframe.columns[1:19]
 chocoframe[conv_booleanos] = chocoframe[conv_booleanos].astype(bool)
 
