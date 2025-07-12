@@ -123,16 +123,14 @@ def reset_chat():
 
 # ===================== INICIO =====================
 if st.session_state.step == "start":
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
-
     st.markdown("""
+    <div class='glass-box'>
         <div class="cookie-monster">
             <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png" width="140">
         </div>
+        <h1>Vamos a comer un chocolate</h1>
+        <p class='pregunta'>¿Te provoca algo dulce?</p>
     """, unsafe_allow_html=True)
-
-    st.markdown("<h1>Vamos a comer un chocolate</h1>", unsafe_allow_html=True)
-    st.markdown("<p class='pregunta'>¿Te provoca algo dulce?</p>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
     with col1:
