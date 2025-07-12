@@ -19,10 +19,10 @@ st.markdown("""
 
         .glass-box {
             background-color: rgba(255, 255, 255, 0.88);
-            padding: 50px 40px;
+            padding: 60px 40px 50px 40px;
             border-radius: 25px;
             margin: 60px auto;
-            max-width: 720px;
+            max-width: 750px;
             box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
             text-align: center;
         }
@@ -31,13 +31,13 @@ st.markdown("""
             color: #3e2723;
             font-size: 42px;
             text-shadow: 2px 2px 4px #fff;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .pregunta {
             font-size: 22px;
             color: #5d4037;
-            margin: 25px 0;
+            margin: 30px 0 40px 0;
         }
 
         .stButton>button {
@@ -56,6 +56,13 @@ st.markdown("""
         .stButton>button:hover {
             background-color: #8d6e63;
             transform: scale(1.05);
+        }
+
+        .cookie-monster {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
         }
 
         .gallery {
@@ -80,12 +87,6 @@ st.markdown("""
             text-align: center;
             font-size: 14px;
             color: #4e342e;
-        }
-
-        .cookie-monster {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -122,15 +123,17 @@ def reset_chat():
 
 # ===================== INICIO =====================
 if st.session_state.step == "start":
+    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+
     st.markdown("""
-    <div class="cookie-monster">
-        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png" width="140">
-    </div>
+        <div class="cookie-monster">
+            <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png" width="140">
+        </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
     st.markdown("<h1>Vamos a comer un chocolate</h1>", unsafe_allow_html=True)
     st.markdown("<p class='pregunta'>¿Te provoca algo dulce?</p>", unsafe_allow_html=True)
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Sí"):
@@ -138,8 +141,9 @@ if st.session_state.step == "start":
     with col2:
         if st.button("No"):
             st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
-    st.markdown("</div>", unsafe_allow_html=True)
 
+    st.markdown("</div>", unsafe_allow_html=True) 
+    
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
     st.markdown("""
