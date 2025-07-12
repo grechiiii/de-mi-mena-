@@ -35,23 +35,26 @@ st.markdown("""
         }
 
         .pregunta {
-            font-size: 22px;
+            font-size: 26px;
+            font-weight: bold;
             color: #5d4037;
             margin: 30px 0 40px 0;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
         }
 
         .stButton>button {
             background-color: #6d4c41;
             color: white;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
-            border-radius: 12px;
-            padding: 12px 30px;
-            margin: 15px;
+            border-radius: 14px;
+            padding: 15px 40px;
+            margin: 20px 10px;
             border: none;
-            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
             transition: all 0.3s ease;
         }
+
 
         .stButton>button:hover {
             background-color: #8d6e63;
@@ -61,8 +64,11 @@ st.markdown("""
         .cookie-monster {
             display: flex;
             justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+        .cookie-monster img {
+            width: 180px;
         }
 
         .gallery {
@@ -126,10 +132,11 @@ if st.session_state.step == "start":
     st.markdown("""
     <div class='glass-box'>
         <div class="cookie-monster">
-            <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png" width="140">
+            <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstrito.png">
         </div>
         <h1>Vamos a comer un chocolate</h1>
         <p class='pregunta'>¿Te provoca algo dulce?</p>
+        <div style="display: flex; justify-content: center; gap: 40px;">
     """, unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
@@ -140,7 +147,7 @@ if st.session_state.step == "start":
         if st.button("No"):
             st.info("¡Está bien! Te esperamos cuando tengas hambre 😋")
 
-    st.markdown("</div>", unsafe_allow_html=True) 
+    st.markdown("</div></div>", unsafe_allow_html=True)
     
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
