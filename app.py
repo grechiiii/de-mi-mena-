@@ -181,9 +181,13 @@ if st.session_state.step == "start":
     st.markdown("</div>", unsafe_allow_html=True)
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
-    with st.container():
-        st.markdown("<div class='white-box-container'>", unsafe_allow_html=True)
+    # Abrir caja blanca
+    st.markdown("<div class='white-box-container'>", unsafe_allow_html=True)
 
+    # Usamos columnas para forzar que el contenido esté dentro del ancho visual de la caja
+    col1, col2, col3 = st.columns([1, 6, 1])  # más espacio a los lados para centrar
+
+    with col2:
         st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png", width=140)
 
         st.markdown("<h1 style='color:#3e2723;'>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
@@ -202,7 +206,8 @@ elif st.session_state.step == "tipo_chocolate":
             else:
                 st.session_state.step = "acentos"
 
-        st.markdown("</div>", unsafe_allow_html=True)
+    # Cerrar caja blanca
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
