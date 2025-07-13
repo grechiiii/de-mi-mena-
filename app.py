@@ -28,6 +28,15 @@ st.markdown("""
             text-align: center;
         }
 
+        .white-box-container {
+            background-color: rgba(255,255,255,0.88);
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
+            margin: 50px auto;
+            max-width: 750px;
+        }
+
         h1 {
             color: #3e2723;
             font-size: 42px;
@@ -56,7 +65,6 @@ st.markdown("""
             transition: all 0.3s ease;
         }
 
-
         .stButton>button:hover {
             background-color: #8d6e63;
             transform: scale(1.05);
@@ -68,6 +76,7 @@ st.markdown("""
             margin-top: 10px;
             margin-bottom: 30px;
         }
+
         .cookie-monster img {
             width: 180px;
         }
@@ -114,17 +123,6 @@ st.markdown("""
             font-size: 14px;
             color: #4e342e;
         }
-        st.markdown("""
-            
-        .white-box-container {
-            background-color: rgba(255,255,255,0.88);
-            padding: 50px 30px;
-            border-radius: 25px;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
-            margin: 50px auto;
-            max-width: 750px;
-        }
-
     </style>
 """, unsafe_allow_html=True)
 
