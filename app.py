@@ -172,29 +172,34 @@ if st.session_state.step == "start":
     st.markdown("</div>", unsafe_allow_html=True)
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
-    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
+    with st.container():
+        st.markdown("""
+            <div style="background-color: rgba(255, 255, 255, 0.88); padding: 50px; border-radius: 25px; box-shadow: 0px 8px 24px rgba(0,0,0,0.2); max-width: 750px; margin: auto;">
+        """, unsafe_allow_html=True)
 
-    st.markdown("""
-    <div class="cookie-monster">
-        <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown("""
+            <div class="cookie-monster">
+                <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.markdown("<h1>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
-    tipo = st.radio("", [
-        "Solo chocolate",
-        "Hecho en su mayoría de chocolate",
-        "Con acentos de chocolate"
-    ])
-    if st.button("Siguiente ➡️"):
-        if tipo == "Solo chocolate":
-            st.session_state.step = "mani_almendras"
-        elif tipo == "Hecho en su mayoría de chocolate":
-            st.session_state.step = "hecho_mayoria"
-        else:
-            st.session_state.step = "acentos"
+        st.markdown("<h1 style='color: #3e2723;'>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
 
-    st.markdown("</div>", unsafe_allow_html=True) 
+        tipo = st.radio("", [
+            "Solo chocolate",
+            "Hecho en su mayoría de chocolate",
+            "Con acentos de chocolate"
+        ])
+
+        if st.button("Siguiente ➡️"):
+            if tipo == "Solo chocolate":
+                st.session_state.step = "mani_almendras"
+            elif tipo == "Hecho en su mayoría de chocolate":
+                st.session_state.step = "hecho_mayoria"
+            else:
+                st.session_state.step = "acentos"
+
+        st.markdown("</div>", unsafe_allow_html=True) 
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
