@@ -182,7 +182,7 @@ if st.session_state.step == "start":
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
     # Abrir caja blanca
-    st.markdown("<div class='white-box-container'>", unsafe_allow_html=True)
+    st.markdown("<div class='glass-box'>", unsafe_allow_html=True)
 
     # Usamos columnas para forzar que el contenido esté dentro del ancho visual de la caja
     col1, col2, col3 = st.columns([1, 6, 1])  # más espacio a los lados para centrar
