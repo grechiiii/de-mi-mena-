@@ -114,6 +114,17 @@ st.markdown("""
             font-size: 14px;
             color: #4e342e;
         }
+        st.markdown("""
+            
+        .white-box-container {
+            background-color: rgba(255,255,255,0.88);
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0px 8px 24px rgba(0,0,0,0.2);
+            margin: 50px auto;
+            max-width: 750px;
+        }
+
     </style>
 """, unsafe_allow_html=True)
 
@@ -172,13 +183,8 @@ if st.session_state.step == "start":
     st.markdown("</div>", unsafe_allow_html=True)
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
-    # CREA UNA FILA DE COLUMNAS PARA CENTRAR TODO EL CONTENIDO
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col2:
-        st.markdown("""
-            <div style="background-color: rgba(255,255,255,0.88); padding: 50px 30px; border-radius: 25px;
-                        box-shadow: 0px 8px 24px rgba(0,0,0,0.2); text-align: center;">
-        """, unsafe_allow_html=True)
+    with st.container():
+        st.markdown("<div class='white-box-container'>", unsafe_allow_html=True)
 
         st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png", width=140)
 
