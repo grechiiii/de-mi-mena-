@@ -194,7 +194,7 @@ elif st.session_state.step == "tipo_chocolate":
         else:
             st.session_state.step = "acentos"
 
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True) 
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
