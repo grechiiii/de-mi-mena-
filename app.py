@@ -172,18 +172,17 @@ if st.session_state.step == "start":
     st.markdown("</div>", unsafe_allow_html=True)
 # ===================== PASO 2: Tipo de chocolate =====================
 elif st.session_state.step == "tipo_chocolate":
-    with st.container():
+    # CREA UNA FILA DE COLUMNAS PARA CENTRAR TODO EL CONTENIDO
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
         st.markdown("""
-            <div style="background-color: rgba(255, 255, 255, 0.88); padding: 50px; border-radius: 25px; box-shadow: 0px 8px 24px rgba(0,0,0,0.2); max-width: 750px; margin: auto;">
+            <div style="background-color: rgba(255,255,255,0.88); padding: 50px 30px; border-radius: 25px;
+                        box-shadow: 0px 8px 24px rgba(0,0,0,0.2); text-align: center;">
         """, unsafe_allow_html=True)
 
-        st.markdown("""
-            <div class="cookie-monster">
-                <img src="https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png" width="140">
-            </div>
-        """, unsafe_allow_html=True)
+        st.image("https://raw.githubusercontent.com/grechiiii/de-mi-mena-/refs/heads/main/image/mounstro%20cocinando.png", width=140)
 
-        st.markdown("<h1 style='color: #3e2723;'>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
+        st.markdown("<h1 style='color:#3e2723;'>¿Qué tipo de chocolate quieres?</h1>", unsafe_allow_html=True)
 
         tipo = st.radio("", [
             "Solo chocolate",
@@ -199,7 +198,7 @@ elif st.session_state.step == "tipo_chocolate":
             else:
                 st.session_state.step = "acentos"
 
-        st.markdown("</div>", unsafe_allow_html=True) 
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # ===================== PASO 3: Maní / Almendras =====================
 elif st.session_state.step == "mani_almendras":
